@@ -3,7 +3,7 @@ pipeline {
     agent any
 
    tools {
-      // Install the Maven version configured as "MAVEN_PADRAO" and add it to the path.
+      // Instale e adicione variáveis ao path
       maven 'MAVEN_PADRAO'
    }
 
@@ -19,6 +19,17 @@ pipeline {
             steps {
                 sh 'mvn -gs /var/jenkins_home/extras/mvn_settings.xml test'
             }
-        }        
+        } 
+
+        stage ('Sonar Analysis') {
+            environment {
+                scannerHome = tool 'SONAR_SCANNER'
+            }
+            steps {
+                withSonarQubeEnv('SONAR_LOCAL') {
+                    sh '${scannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonar.curso-ic/ -Dsonar.login=c7bc9ba1fdf19d5f8fbe83fb00043c695b449c51 -Dsonar.projectKey=DeployBack -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/src/test/**,**/model/**,**Application.java'
+                }
+            }
+        } 
     }
 }
