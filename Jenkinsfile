@@ -5,7 +5,9 @@ pipeline {
     stages {
 
         stage ('Just Test') {
-            sh 'echo deu certo!'
+            steps {
+                sh 'echo deu certo!'
+            }
         }
     }
 }
