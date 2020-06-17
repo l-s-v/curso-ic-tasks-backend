@@ -11,7 +11,7 @@ pipeline {
 
         stage ('Build Backend') {
             steps {
-                sh 'mvn -DskipTests=true clean package'
+                sh 'mvn -gs /var/jenkins_home/extras/mvn_settings.xml -DskipTests=true clean package'
             }
         }
     }
