@@ -46,7 +46,16 @@ pipeline {
             steps{
                 deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://tomcat.curso-ic/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
             }
+        }
 
+        stage("Deploy Frontend"){            
+            steps{
+                dir ('frotend') {
+                    git credentialsId: 'github_login', url: 'https://github.com/lelandro/tasks-frontend.git'
+                    sh 'mvn -gs /var/jenkins_home/extras/mvn_settings.xml clean package'
+                    deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://tomcat.curso-ic/')], contextPath: 'tasks', war: 'target/tasks.war'
+                }                
+            }
         }
     }
 }
