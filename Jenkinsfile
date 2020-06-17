@@ -34,12 +34,19 @@ pipeline {
 
         stage("Quality Gate"){
             steps {
-                sleep(15);
+                sleep(10);
 
                 timeout (time: 1, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
             }
+        }
+
+        stage("Deploy Backend"){
+            steps{
+                deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://tomcat.curso-ic/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
+            }
+
         }
     }
 }
