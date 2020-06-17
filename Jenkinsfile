@@ -14,5 +14,11 @@ pipeline {
                 sh 'mvn -gs /var/jenkins_home/extras/mvn_settings.xml -DskipTests=true clean package'
             }
         }
+
+        stage ('Unit Tests') {
+            steps {
+                sh 'mvn -gs /var/jenkins_home/extras/mvn_settings.xml test'
+            }
+        }        
     }
 }
