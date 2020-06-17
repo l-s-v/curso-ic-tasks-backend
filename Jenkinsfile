@@ -30,6 +30,14 @@ pipeline {
                     sh '${scannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonar.curso-ic/ -Dsonar.login=c7bc9ba1fdf19d5f8fbe83fb00043c695b449c51 -Dsonar.projectKey=DeployBack -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/src/test/**,**/model/**,**Application.java'
                 }
             }
-        } 
+        }
+
+        stage("Quality Gate"){
+            steps {
+                timeout (time: 1, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
     }
 }
