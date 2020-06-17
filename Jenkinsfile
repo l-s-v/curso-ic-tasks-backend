@@ -26,7 +26,7 @@ pipeline {
                 scannerHome = tool 'SONAR_SCANNER'
             }
             steps {
-                withSonarQubeEnv('SONAR_LOCAL') {
+                withSonarQubeEnv('SONAR_PADRAO') {
                     sh '${scannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonar.curso-ic/ -Dsonar.login=c7bc9ba1fdf19d5f8fbe83fb00043c695b449c51 -Dsonar.projectKey=DeployBack -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/src/test/**,**/model/**,**Application.java'
                 }
             }
