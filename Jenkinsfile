@@ -50,7 +50,7 @@ pipeline {
 
         stage("Deploy Frontend"){            
             steps{
-                dir ('frotend') {
+                dir ('frontend') {
                     git credentialsId: 'github_login', url: 'https://github.com/lelandro/tasks-frontend.git'
                     sh 'mvn -gs /var/jenkins_home/extras/mvn_settings.xml clean package'
                     deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://tomcat.curso-ic/')], contextPath: 'tasks', war: 'target/tasks.war'
