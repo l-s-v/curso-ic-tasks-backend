@@ -1,13 +1,19 @@
 node {
 
     try {
-        stage ('Build Backend') {
-            sh 'mvn -DskipTests=true clean package'
-        }
+	    stage('Checkout') {
+			checkout scm
+	    }
 
-        stage ('Unit Tests') {
-            sh 'mvn test'
-        } 
+        withMaven(maven: 'MAVEN_PADRAO') {
+            stage ('Build Backend') {
+                sh 'mvn -DskipTests=true clean package'
+            }
+
+            stage ('Unit Tests') {
+                sh 'mvn test'
+            } 
+        }
     }
     finally {
         junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
