@@ -1,0 +1,16 @@
+node {
+
+    try {
+        stage ('Build Backend') {
+            sh 'mvn -DskipTests=true clean package'
+        }
+
+        stage ('Unit Tests') {
+            sh 'mvn test'
+        } 
+    }
+    finally {
+        junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
+        archiveArtifacts artifacts: 'target/tasks-backend.war, frontend/target/tasks.war', onlyIfSuccessful: true
+    }    
+}
