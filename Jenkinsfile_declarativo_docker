@@ -1,5 +1,6 @@
 pipeline {
 
+    // Define globalmente onde tudo deve ser executado
     agent {
         docker {
             image 'maven:3-alpine'

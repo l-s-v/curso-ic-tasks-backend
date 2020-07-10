@@ -1,10 +1,12 @@
 node {
 
     try {
+        // Deve baixar o código explicitamente
 	    stage('Checkout') {
 			checkout scm
 	    }
 
+        // Tudo que precisar ser executado com ele deve estar dentro do seu "escopo".
         docker.image('maven:3-alpine').inside('-v /var/lib/docker/volumes/jenkins_home_bo2/_data/.m2/:/root/.m2') {
             stage ('Build Backend') {
                 sh 'mvn -DskipTests=true clean package'

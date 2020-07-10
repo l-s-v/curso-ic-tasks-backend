@@ -3,7 +3,7 @@ pipeline {
     agent any
 
    tools {
-      // Instale e adicione variáveis ao path
+      // Utiliza o maven configurado no jenkins e nomeado como MAVEN_PADRAO. Se ainda não tiver instalado, faz a instalação automática.
       maven 'MAVEN_PADRAO'
    }
 

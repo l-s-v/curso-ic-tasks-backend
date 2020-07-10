@@ -1,10 +1,12 @@
 node {
 
     try {
+        // Deve baixar o código explicitamente
 	    stage('Checkout') {
 			checkout scm
 	    }
 
+        // Utiliza o maven configurado no jenkins e nomeado como MAVEN_PADRAO. Tudo que precisar ser executado com ele deve estar dentro do seu "escopo".
         withMaven(maven: 'MAVEN_PADRAO') {
             stage ('Build Backend') {
                 sh 'mvn -DskipTests=true clean package'
