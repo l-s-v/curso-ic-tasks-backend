@@ -5,7 +5,7 @@ node {
 			checkout scm
 	    }
 
-        withMaven(maven: 'MAVEN_PADRAO') {
+        docker.image('maven:3-alpine').inside('-v ~/.m2:/root/.m2') {
             stage ('Build Backend') {
                 sh 'mvn -DskipTests=true clean package'
             }
