@@ -1,0 +1,16 @@
+@Library(["qa", "util"]) _
+
+node {
+
+    // sh "echo ${J_AMBIENTE_INTEGRACAO}"
+    // sh "echo ${params.AMBIENTE}"
+    // def c = "${G_AMBIENTE_INTEGRACAO}" == "${AMBIENTE}";
+
+    // def nomeVariavel = "G_AMBIENTE_INTEGRACAO";
+
+    // println ;
+    // println envVars['AMBIENTE'];
+
+    println util.isAmbienteIntegracao();
+    // println NomesVariaveisEnum.AMBIENTE_INTEGRACAO.toString();
+}
