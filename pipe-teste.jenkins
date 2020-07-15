@@ -4,9 +4,13 @@ node {
 
     def props = [:];
     props["BUILD_ARGS_MAVEN"] = "-DskipTests=true -U -Dproject.build.sourceEncoding=ISO-8859-1";
-    props["BUILD_WITH_DOCKER"] = false;
-    // props["DOCKER_IMAGE_BUILD"] = "registry-docker.in.gov.br/in/devel/devel-jdk8:latest";
+    // props["BUILD_WITH_DOCKER"] = false;
+    // props["DOCKER_IMAGE_BUILD"] = "maven:3.6.3-ibmjava-alpine";
     // props["DOCKER_IMAGE_BUILD_ARGS"] = "";
+    
+    props["BUILD_COMPLETO"] = {
+                  println("\n TESTANDO RECURSO BUILD \n");
+  	};
 
     pipePadraoSistema.start(props);
 
