@@ -2,5 +2,13 @@
 
 node {
 
-    pipePadraoSistema.start(build_argsMaven:"-DskipTests=true", build_withDocker: false);
+    def props = [:];
+    props["BUILD_ARGS_MAVEN"] = "-DskipTests=true -U -Dproject.build.sourceEncoding=ISO-8859-1";
+    props["BUILD_WITH_DOCKER"] = false;
+    // props["DOCKER_IMAGE_BUILD"] = "registry-docker.in.gov.br/in/devel/devel-jdk8:latest";
+    // props["DOCKER_IMAGE_BUILD_ARGS"] = "";
+
+    pipePadraoSistema.start(props);
+
+    // pipePadraoSistema.start(BUILD_ARGS_MAVEN : "-DskipTests=true -U -Dproject.build.sourceEncoding=ISO-8859-1");
  }
